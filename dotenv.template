@@ -1,6 +1,7 @@
 UPLOAD_IMAGE=upload_image_repository:tag
-S3_HOST=example.s3.host
-S3_BUCKET=mybucketname
+S3_URL=http://example.s3.host:1234
+S3_INPUT_BUCKET=myinputbucketname
+S3_OUTPUT_BUCKET=myoutputbucketname
 S3_ACCESS_KEY=myaccesskey
 S3_SECRET_KEY=mysecretkey
 IMAGEPROC_RUNNER_IMAGE=imageproc_runner_repository:tag

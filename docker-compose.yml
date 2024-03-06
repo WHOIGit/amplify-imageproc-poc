@@ -6,8 +6,9 @@ services:
     image: ${UPLOAD_IMAGE}
     environment:
       AMQP_HOST: rabbitmq
-      S3_HOST: ${S3_HOST}
-      S3_BUCKET: ${S3_BUCKET}
+      AMQP_USER: ${RABBITMQ_USER}
+      S3_URL: ${S3_URL}
+      S3_INPUT_BUCKET: ${S3_INPUT_BUCKET}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY}
       S3_SECRET_KEY: ${S3_SECRET_KEY}
     ports:
@@ -19,8 +20,9 @@ services:
       AMQP_HOST: rabbitmq
       AMQP_USER: ${RABBITMQ_USER}
       IMAGEPROC_HOST: imageproc
-      S3_HOST: ${S3_HOST}
-      S3_BUCKET: ${S3_BUCKET}
+      S3_URL: ${S3_URL}
+      S3_INPUT_BUCKET: ${S3_INPUT_BUCKET}
+      S3_OUTPUT_BUCKET: ${S3_OUTPUT_BUCKET}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY}
       S3_SECRET_KEY: ${S3_SECRET_KEY}
   
