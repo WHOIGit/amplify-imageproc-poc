@@ -13,6 +13,9 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
     ports:
       - "8080:8080"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
 
   imageproc-runner:
     image: ${IMAGEPROC_RUNNER_IMAGE}
