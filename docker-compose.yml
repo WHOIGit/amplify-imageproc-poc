@@ -5,14 +5,16 @@ services:
   upload:
     image: ${UPLOAD_IMAGE}
     environment:
-      AMQP_HOST: rabbitmq
-      AMQP_USER: ${RABBITMQ_USER}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      RABBITMQ_EXCHANGE: upload
       S3_URL: ${S3_URL}
       S3_INPUT_BUCKET: ${S3_INPUT_BUCKET}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY}
       S3_SECRET_KEY: ${S3_SECRET_KEY}
     ports:
-      - "8080:8080"
+      - "8000:8000"
     depends_on:
       rabbitmq:
         condition: service_healthy
