@@ -23,13 +23,17 @@ services:
     image: ${IMAGEPROC_RUNNER_IMAGE}
     environment:
       AMQP_HOST: rabbitmq
-      AMQP_USER: ${RABBITMQ_USER}
       IMAGEPROC_HOST: imageproc
       S3_URL: ${S3_URL}
       S3_INPUT_BUCKET: ${S3_INPUT_BUCKET}
       S3_OUTPUT_BUCKET: ${S3_OUTPUT_BUCKET}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY}
       S3_SECRET_KEY: ${S3_SECRET_KEY}
+      AMQP_EXCHANGE_SUBSCRIBE:  upload
+      AMQP_EXCHANGE_PUBLISH: dithered
+      AMQP_EXCHANGE_PROV: provenance
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -44,7 +48,10 @@ services:
       COUCHDB_USER: ${COUCHDB_USER}
       COUCHDB_PASSWORD: ${COUCHDB_PASSWORD}
       COUCHDB_DB: ${COUCHDB_DB}
-      AMQP_HOST: rabbitmq
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_EXCHANGE: ${AMQP_EXCHANGE_PROV}
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
     depends_on:
       rabbitmq:
         condition: service_healthy
