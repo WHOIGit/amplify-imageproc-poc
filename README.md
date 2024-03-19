@@ -18,24 +18,34 @@ The application is composed of the following services:
 To configure the application, create a `.env` file in the same directory as the `docker-compose.yml` file with the following variables:
 
 ```
-UPLOAD_IMAGE=<upload-service-image>
-RABBITMQ_USER=<rabbitmq-username>
-RABBITMQ_PASSWORD=<rabbitmq-password>
-S3_URL=<s3-url>
-S3_INPUT_BUCKET=<s3-input-bucket>
-S3_OUTPUT_BUCKET=<s3-output-bucket>
-S3_ACCESS_KEY=<s3-access-key>
-S3_SECRET_KEY=<s3-secret-key>
-IMAGEPROC_RUNNER_IMAGE=<imageproc-runner-image>
-IMAGEPROC_IMAGE=<imageproc-image>
-AMQP_EXCHANGE_PROV=<provenance-exchange-name>
-PROVENANCEDB_IMAGE=<provenancedb-image>
-COUCHDB_USER=<couchdb-username>
-COUCHDB_PASSWORD=<couchdb-password>
-COUCHDB_DB=<couchdb-database-name>
+# service and pub/sub component images
+
+UPLOAD_IMAGE=<image tag>
+IMAGEPROC_RUNNER_IMAGE=<image tag>
+IMAGEPROC_IMAGE=<image tag>
+PROVENANCEDB_IMAGE=<image tag>
+
+# e.g., URL for MinIO running on the host system
+S3_URL=http://host.docker.internal:9000
+S3_ACCESS_KEY=<your access key>
+S3_SECRET_KEY=<your secret key>
+
+S3_INPUT_BUCKET=amplify-poc-input 
+S3_OUTPUT_BUCKET=amplify-poc-output
+
+RABBITMQ_USER=amplify
+RABBITMQ_PASSWORD=amplify
+AMQP_EXCHANGE_SUBSCRIBE=uploaded
+AMQP_EXCHANGE_PUBLISH=dithered
+AMQP_EXCHANGE_PROV=provenance
+
+COUCHDB_USER=provenance
+COUCHDB_PASSWORD=provenance
+COUCHDB_DB=provenance
+
 ```
 
-Replace the placeholders (`<...>`) with the appropriate values for your setup.
+Replace the placeholders (`<...>`) and other example values with the appropriate values for your setup.
 
 ## Running the Application
 
