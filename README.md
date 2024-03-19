@@ -6,8 +6,8 @@ This is a dockerized image processing application that consists of several micro
 
 The application is composed of the following services:
 
-- `upload`: Accepts image uploads and sends them to the image processing service via RabbitMQ.
-- `imageproc-runner`: Receives images from the upload service, processes them using the `imageproc` service, and uploads the processed images to S3.
+- `upload`: Accepts image uploads, stores them in S3, and sends a notification to the image processing service via RabbitMQ.
+- `imageproc-runner`: Receives notifications from the upload service, downloads images from S3, processes them using the `imageproc` service, and uploads the processed images to S3.
 - `imageproc`: Performs the actual image processing.
 - `provenancedb`: Stores the provenance information of the processed images in a CouchDB database.
 - `couchdb`: The database used by the `provenancedb` service.
