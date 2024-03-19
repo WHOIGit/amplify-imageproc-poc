@@ -31,7 +31,7 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
       AMQP_EXCHANGE_SUBSCRIBE:  upload
       AMQP_EXCHANGE_PUBLISH: dithered
-      AMQP_EXCHANGE_PROV: provenance
+      AMQP_EXCHANGE_PROV: ${AMQP_EXCHANGE_PROV}
       RABBITMQ_USER: ${RABBITMQ_USER}
       RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
     depends_on:
@@ -49,9 +49,9 @@ services:
       COUCHDB_PASSWORD: ${COUCHDB_PASSWORD}
       COUCHDB_DB: ${COUCHDB_DB}
       RABBITMQ_HOST: rabbitmq
-      RABBITMQ_EXCHANGE: ${AMQP_EXCHANGE_PROV}
       RABBITMQ_USER: ${RABBITMQ_USER}
       RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      RABBITMQ_EXCHANGE: ${AMQP_EXCHANGE_PROV}
     depends_on:
       rabbitmq:
         condition: service_healthy
